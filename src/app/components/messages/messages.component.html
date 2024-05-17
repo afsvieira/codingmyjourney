@@ -1,0 +1,45 @@
+<div class="pt-3">
+  <ngx-datatable
+    class="material p-2 m-3 mb-3"
+    [rows]="messages"
+    [columnMode]="'force'"
+    [headerHeight]="40"
+    [footerHeight]="50"
+    [rowHeight]="'auto'"
+    [rowClass]="getRowClass"
+    [responsive]="true"
+    (activate)="openMessage($event)">
+
+    <ngx-datatable-column name="Date" prop="date" [cellClass]="getCellClass">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        {{row.date | date:'MMM dd, yyyy'}}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="From" prop="name" [cellClass]="getCellClass"></ngx-datatable-column>
+    <ngx-datatable-column name="Email" prop="email" [cellClass]="getCellClass"></ngx-datatable-column>
+    <ngx-datatable-column name="Phone" prop="phone" [cellClass]="getCellClass"></ngx-datatable-column>
+    <ngx-datatable-column name="Replied" prop="replied">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        <i class="bi bi-check-lg" *ngIf="row.replied"></i>
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="Options">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        <button type="button" class="btn btn-primary m-1"><i class="bi bi-reply"></i></button>
+        <button *ngIf="!row.read" type="button" class="btn btn-info m-1" (click)="changeReadStatus(row.id, $event)"><i class="bi bi-envelope-open"></i></button>
+        <button *ngIf="row.read" type="button" class="btn btn-info m-1" (click)="changeReadStatus(row.id, $event)"><i class="bi bi-envelope"></i></button>
+        <button type="button" class="btn btn-danger m-1" (click)="openModal(deleteMessageModal, row.id, $event)"><i class="bi bi-trash"></i></button>
+      </ng-template>
+    </ngx-datatable-column>
+  </ngx-datatable>
+</div>
+
+<ng-template #deleteMessageModal>
+  <div class="modal-body text-center">
+    <p>Delete message?</p>
+    <button type="button" class="btn btn-primary m-1" (click)="deleteMessage()">Yes</button>
+    <button type="button" class="btn btn-danger m-1" (click)="decline()">No</button>
+  </div>
+</ng-template>
+
+

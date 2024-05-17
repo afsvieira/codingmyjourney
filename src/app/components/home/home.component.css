@@ -1,0 +1,21 @@
+.card-hover:hover {
+  transform: scale(1.1);
+  transition: transform 0.3s ease;
+}
+
+@media screen and (max-width: 1400px) and (min-width: 990px) {
+  .card-body {
+    height: 300px !important;
+  }
+}
+@media screen and (max-width: 989px) and (min-width: 760px) {
+  .card-body {
+    height: 400px !important;
+  }
+}
+
+@media screen and (max-width: 768px){
+  .card-hover:hover {
+    transform: scale(1.05) !important;
+  }
+}

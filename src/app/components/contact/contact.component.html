@@ -1,0 +1,60 @@
+<section class="py-3 py-md-5 py-xl-8">
+  <div class="container">
+    <div class="row gy-3 gy-md-4 gy-lg-0 align-items-lg-center">
+      <div class="col-12 col-lg-6 col-xl-5">
+        <h1 class="text-center">Let's Connect</h1>
+        <p class="lead text-center">Have a brilliant idea for a new blog post? Looking for opportunities to collaborate on exciting projects? Or perhaps you just want to drop a line?</p>
+        <p class="lead text-center">Feel free to reach out using the form below or via email. I'm open to suggestions for new blog posts and eager to explore opportunities for collaboration on fresh projects. Don't hesitate to get in touch!</p>
+        <p class="lead text-center">
+          <a href="https://www.instagram.com/codingmyjourney.ca/" target="_blank" style="text-decoration: none; color: #833AB4;"><i class="bi bi-instagram mx-1"></i>&nbsp;</a>
+          <a href="https://www.twitter.com/afsvieira" target="_blank" style="text-decoration: none; color: #1DA1F2;"><i class="bi bi-twitter mx-1"></i>&nbsp;</a>
+          <a href="https://www.linkedin.com/in/afelipevieira/" target="_blank" style="text-decoration: none; color: #0077B5;"><i class="bi bi-linkedin mx-1"></i>&nbsp;</a>
+        </p>
+      </div>
+      <div class="col-12 col-lg-6 col-xl-7">
+        <form [formGroup]="form">
+          <div class="row justify-content-center">
+            <div class="form-group col-md-6 mb-2">
+              <label class="form-label">Name:</label>
+              <input type="text" class="form-control" formControlName="name" [ngClass]="cssValidator(f.name)">
+              <div *ngIf="f.name.errors?.required" class="invalid-feedback">
+                Name is required.
+              </div>
+            </div>
+          </div>
+          <div class="row justify-content-center">
+            <div class="form-group col-md-6 mb-2">
+              <label class="form-label">Email:</label>
+              <input type="email" class="form-control" formControlName="email" [ngClass]="cssValidator(f.email)">
+              <div *ngIf="f.email.errors?.required" class="invalid-feedback">
+                Email is required.
+              </div>
+              <div *ngIf="f.email.errors?.email" class="invalid-feedback">
+                Email invalid.
+              </div>
+            </div>
+          </div>
+          <div class="row justify-content-center">
+            <div class="form-group col-md-6 mb-2">
+              <label class="form-label">Phone:</label>
+              <input type="text" class="form-control" formControlName="phone">
+              <small class="form-text text-muted" style="float: right;">(optional)</small>
+            </div>
+          </div>
+          <div class="row justify-content-center">
+            <div class="form-group col-md-6 mb-2">
+              <label class="form-label">Message:</label>
+              <textarea class="form-control" rows="2" autoResize [ngClass]="cssValidator(f.comment)" formControlName="comment"></textarea>
+              <div *ngIf="f.comment.errors?.required" class="invalid-feedback">
+                Message is required.
+              </div>
+            </div>
+          </div>
+          <div class="row justify-content-center">
+            <button type="button" class="btn btn-primary col-auto m-2" [disabled]="!form.valid" (click)="sendMessage()">Send Message</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
